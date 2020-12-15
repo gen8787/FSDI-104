@@ -12,11 +12,13 @@
 }
 
 .nav-link {
-    color: red
+    color: red;
+    transition-duration: 0.5s;
 }
 
 .nav-link:hover {
-    color: blue
+    
+    color: rgb(0, 110, 200);
 }
 
 body {
