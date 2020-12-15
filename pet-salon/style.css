@@ -1,0 +1,26 @@
+/* .title {
+    display: flex;
+    justify-content: space-between;
+} */
+
+.logo {
+    width: 15rem;
+}
+
+.nav {
+    /* background: #D2E0DA; */
+}
+
+.nav-link {
+    color: red
+}
+
+.nav-link:hover {
+    color: blue
+}
+
+body {
+    /* background-color: #D2E0DA; */
+    background-image: linear-gradient(#D2E0DA, #abb8b2);
+    background-size: 100vh 100vh;
+}
