@@ -42,9 +42,11 @@ var salon = {
     ]
 };
 
+var {name, address: {street, city, state, zip}, hours: {open, close}, pets} = salon;
+
 
 // #   O F   P E T S   R E G I S T E R E D
-totalNumPets = salon.pets.length;
+totalNumPets = pets.length;
 document.getElementById("number-pets").innerHTML=`
     <p>
         Total Pets Registered: <b>${totalNumPets}</b>
@@ -52,27 +54,15 @@ document.getElementById("number-pets").innerHTML=`
 
 
 // P E T   N A M E S
-for (var i = 0; i < salon.pets.length; i ++) {
+for (var i = 0; i < pets.length; i ++) {
     var petName = document.createElement("li");
-    petName.innerText = salon.pets[i].name;
+    petName.innerText = pets[i].name;
     document.getElementById("pets").appendChild(petName);
 };
 
 
 // F O O T E R   I N F O
-var {name, address: {street, city, state, zip}, hours: {open, close}} = salon;
-
 document.getElementById('footer-info').innerHTML=`
-    <p>
-        Hours: <br>
-        ${open} - ${close}, Monday to Friday <br>
-        <br>
-        Address: <br>
-        ${street} <br>
-        ${city} ${state}, ${zip}
-    </p>`;
-
-    document.getElementById('footer-infoo').innerHTML=`
     <p>
         Hours: <br>
         ${open} - ${close}, Monday to Friday <br>
