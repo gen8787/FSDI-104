@@ -20,7 +20,7 @@ var {name, address: {street, city, state, zip}, hours: {open, close}, pets} = sa
 
 // P E T   C L A S S 
 class Pet {
-    constructor(name, age, gender, breed, service, owner, phone) {
+    constructor(name, age, gender, breed, service, owner, phone, email) {
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -28,6 +28,7 @@ class Pet {
         this.service = service;
         this.owner = owner;
         this.phone = phone;
+        this.email = email;
     }
 }
 
@@ -52,8 +53,9 @@ function register() {
     var inputService = document.getElementById("petService").value;
     var inputOwner = document.getElementById("petOwner").value;
     var inputPhone = document.getElementById("petPhone").value;
+    var inputEmail = document.getElementById("petEmail").value;
 
-    var newPet = new Pet(inputName, inputAge, inputGender, inputBreed, inputService, inputOwner, inputPhone);
+    var newPet = new Pet(inputName, inputAge, inputGender, inputBreed, inputService, inputOwner, inputPhone, inputEmail);
 
     pets.push(newPet);
     console.log(newPet);
