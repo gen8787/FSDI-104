@@ -44,3 +44,7 @@ function createPet() {
     newPet = new PetC(inputName, inputGender);
     console.log(newPet);
 };
+
+// document.getElementById().style.display="none";
+document.querySelector("#petName");
+document.querySelector(".petName");
