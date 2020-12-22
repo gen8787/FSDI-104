@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>To Do List</title>
+</head>
+<body>
+    <div class="container mx-auto p-0">
+
+        <div class="header">
+            <a href="./index.html">
+                <h1 class="display-3 mt-4">To Do List</h1>
+            </a>
+        </div>
+<!-- F O R M -->
+        <div class="form">
+            <form action="#">
+
+                <div class="">
+                    <label class="form-label" for="todo">Add a Task:</label>
+                    <input class="form-control" type="text" name="todo" id="todo" onsubmit="addTodo()" >
+                </div>
+
+            </form>
+
+            <div class="">
+                <button type="submit" class="d-flex btn btn-lg btn-outline-primary mt-5 mb-2 ms-auto" onclick="addTodo()">Add Todo</button>
+            </div>
+
+        </div>
+<!-- L I S T   T O D O S -->
+        <div class="todos">
+            <h1 class="display-3">All To Dos</h1>
+
+            <div id="list-todos"></div>
+        </div>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

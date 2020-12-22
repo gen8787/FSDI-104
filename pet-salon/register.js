@@ -78,18 +78,16 @@ function register() {
 
     var price;
     if (inputService === "Wash") {
-        price = 25;
+        price = prices.wash;
     } else if (inputService === "Groom") {
-        price = 30;
+        price = prices.groom;
     } else if (inputService === "Full") {
-        price = 50;
+        price = prices.fullService;
     }
 
     var newPet = new Pet(inputName, inputAge, inputGender, inputBreed, inputService, inputOwner, inputPhone, inputEmail, price);
 
     pets.push(newPet);
-    console.log(newPet);
-    console.log(pets);
 
     totalNumPets();
     oldestPet();
@@ -163,7 +161,7 @@ function petNames() {
                         <li class="list-group-item"><b>Service:</b> ${pets[i].service}</li>
                         <li class="list-group-item"><b>Price:</b> $${pets[i].price}.00</li>
                         <li class="list-group-item"><b>Owner:</b> ${pets[i].owner}</li>
-                        <li class="list-group-item"><b>Price:</b> ${pets[i].phone}</li>
+                        <li class="list-group-item"><b>Phone:</b> ${pets[i].phone}</li>
                     </ul>
                     </div>
             </div>
