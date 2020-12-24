@@ -103,7 +103,6 @@ function oldestPet() {
     Oldest Pet: <b>${oldestPet}</b>
     </p>`;
 }
-oldestPet();
 
 
 // Y O U N G E S T
@@ -114,7 +113,6 @@ function youngestPet() {
     Youngest Pet: <b>${youngestPet}</b>
     </p>`;
 }
-youngestPet();
 
 
 // T O T A L   P R I C E
@@ -138,7 +136,7 @@ function displayPets() {
 
     
     for (var i = 0; i < pets.length; i++) {
-        
+
         var icon = '';
         if (pets[i].anType === "Dog") {
             icon = '<i class="fas fa-dog"></i>';
@@ -186,14 +184,16 @@ function displayOfficeInfo() {
 }
 
 
-// 105   N O T E S
-// 
+// I N T I
 function init() {
     console.log("Document Ready");
 
     createPets();
-    displayPets();
+    totalNumPets();
+    oldestPet();
+    youngestPet();
     totalPrice();
+    displayPets();
     displayOfficeInfo();
 }
 
