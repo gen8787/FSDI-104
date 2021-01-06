@@ -36,7 +36,8 @@
             </ul>
         <hr>
 
-        <main>
+        <main class="d-flex">
+            <div>
             <h2 class="mb-3 display-6 text-center">Register a Pet</h2>
 
             <div class="form-container border rounded border-danger p-3">
@@ -107,7 +108,10 @@
                     <button type="submit" class="d-flex btn btn-lg btn-danger mt-5 mb-2 ms-auto" onclick="register()">Register Pet</button>
                 </div>
             </div>
+        </div>
 <!-- E N D   F O R M -->
+<!-- P E T   I N F O -->
+<div>
             <div class="row mt-4">
                 <div id="number-pets" class="col-3"></div>
 
@@ -117,12 +121,13 @@
 
                 <div id="total-price" class="col-3"></div>
             </div>
-
+<!-- R E G I S T E R E D   P E T S -->
             <h2 class="mb-3 mt-5 display-6 text-center">Registered Pets</h2>
             <div class="border-bottom border-danger mx-3"></div>
             <div id="pets" class="d-flex flex-wrap justify-content-between mb-5"></div>
 
             <hr>
+        </div>
         </main>
 <!-- F O O T E R -->
         <footer id="footer-info">

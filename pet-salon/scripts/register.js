@@ -19,8 +19,12 @@ var salon = {
     }
 }
 
+
 // D E S T R U C T U R E
 var { name, address: { street, city, state, zip }, hours: { open, close }, pets, prices: { wash, groom, fullService } } = salon;
+
+// G L O B A L   V A R I A B L E S
+let petId = 1;
 
 
 // C R E A T E   P E T S
@@ -50,6 +54,7 @@ function createPets() {
     pets.push(yogi);
 }
 
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // R E G I S T E R   A   P E T
 function register() {
@@ -65,11 +70,11 @@ function register() {
 
     var price;
     if (inputService === "Wash") {
-        price = prices.wash;
+        price = salon.prices.wash;
     } else if (inputService === "Groom") {
-        price = prices.groom;
+        price = salon.prices.groom;
     } else if (inputService === "Full") {
-        price = prices.fullService;
+        price = salon.prices.fullService;
     }
 
     var newPet = new Pet(inputName, inputAge, inputGender, inputBreed, inputType, inputService, inputOwner, inputPhone, inputEmail, price);
@@ -92,7 +97,6 @@ function totalNumPets() {
         Total Pets Registered: <b>${totalNumPets}</b>
     </p>`;
 }
-totalNumPets();
 
 
 // O L D E S T
@@ -146,7 +150,7 @@ function displayPets() {
         }
 
         var card = `
-            <div class="card shadow m-3" style="width: 17rem;">
+            <div id="" class="card shadow m-3" style="width: 17rem;">
                 <div class-"card-body">
                     <h5 class="card-title text-center py-3">
                         ${pets[i].name}
@@ -157,15 +161,27 @@ function displayPets() {
                         <li class="list-group-item"><b>Owner:</b> ${pets[i].owner}</li>
                         <li class="list-group-item"><b>Phone:</b> ${pets[i].phone}</li>
                         <li class="list-group-item">${icon}</li>
+                        <button class="my-2 mx-5 btn btn-sm btn-outline-danger" onclick="deletePet(${petId})">Remove Pet</button>
                     </ul>
                     </div>
             </div>
         `
 
         var newCard = document.createElement("div");
+        newCard.setAttribute("id", petId)
         newCard.innerHTML = card;
         document.getElementById("pets").appendChild(newCard);
+
+        petId ++;
     };
+}
+
+// D E L E T E   P E T
+function deletePet(petId) {
+    console.log(petId);
+    document.getElementById(`${petId}`).style.display="none";
+    // var deletePet = document.getElementById(petId);
+    // deletePet.parentElement.removeChild(deletePet)
 }
 
 
@@ -184,7 +200,7 @@ function displayOfficeInfo() {
 }
 
 
-// I N T I
+// I N I T
 function init() {
     console.log("Document Ready");
 
