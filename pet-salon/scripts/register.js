@@ -61,8 +61,8 @@ function register() {
     var inputName = document.getElementById("petName").value;
     var inputAge = document.getElementById("petAge").value;
     var inputGender = document.getElementById("petGender").value;
-    var inputBreed = document.getElementById("petBreed").value;
     var inputType = document.getElementById("petType").value;
+    var inputBreed = document.getElementById("petBreed").value;
     var inputService = document.getElementById("petService").value;
     var inputOwner = document.getElementById("petOwner").value;
     var inputPhone = document.getElementById("petPhone").value;
@@ -76,7 +76,7 @@ function register() {
     } else if (inputService === "Full") {
         price = salon.prices.fullService;
     }
-
+// ****** ANTYPE ********* //
     var newPet = new Pet(inputName, inputAge, inputGender, inputBreed, inputType, inputService, inputOwner, inputPhone, inputEmail, price);
 
     pets.push(newPet);
@@ -84,8 +84,9 @@ function register() {
     totalNumPets();
     oldestPet();
     youngestPet();
-    displayPets();
     totalPrice();
+    petsByType();
+    displayPets();
 }
 
 
@@ -133,12 +134,102 @@ function totalPrice() {
 }
 
 
+// P E T S   B Y   T Y P E
+function petsByType() {
+    let dogs = 0, cats = 0;
+
+    for (var i = 0; i < pets.length; i ++) {
+        switch(pets[i].anType) {
+            case "Dog" :
+                dogs ++;
+                break;
+            case "Cat" :
+                cats ++;
+                break;
+        }
+    }
+
+    document.getElementById("dog-count").innerHTML=`<b>${dogs}</b>`;
+    document.getElementById("cat-count").innerHTML=`<b>${cats}</b>`;
+}
+
+
+// S E A R C H   F O R   P E T
+function searchPet() {
+    var searchText = document.getElementById("search-text").value
+
+    document.getElementById("pets").innerHTML="";
+
+    for (var i = 0; i < pets.length; i ++) {
+        var pet = pets[i];
+
+        if (
+            pet.name.toLowerCase().includes(searchText.toLowerCase()) ||
+            pet.owner.toLowerCase().includes(searchText.toLowerCase()) ||
+            pet.phone.includes(searchText)
+        
+        ) {
+            displayPet(pet);
+        }
+    }
+
+}
+
+// S E A R C H   B Y   T Y P E
+function searchByType() {
+    console.log("SEARCHING");
+}
+
+
+// D I S P L A Y   P E T
+function displayPet(pet) {
+    for (var i = 0; i < pets.length; i++) {
+
+        var icon = '';
+        if (pet.anType === "Dog") {
+            icon = '<i class="fas fa-dog"></i>';
+        }
+        if (pet.anType === "Cat") {
+            icon = '<i class="fas fa-cat"></i>';
+        }
+
+        var card = `
+            <div id="" class="card shadow m-3" style="width: 17rem;">
+                <div class-"card-body">
+                    <h5 class="card-title text-center py-3">
+                        ${pet.name}
+                    </h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>Service:</b> ${pet.service}</li>
+                        <li class="list-group-item"><b>Price:</b> $${pet.price}.00</li>
+                        <li class="list-group-item"><b>Owner:</b> ${pet.owner}</li>
+                        <li class="list-group-item"><b>Phone:</b> ${pet.phone}</li>
+                        <li class="list-group-item">${icon}</li>
+                        <button class="my-2 mx-5 btn btn-sm btn-outline-danger" onclick="deletePet(${petId})">Remove Pet</button>
+                    </ul>
+                    </div>
+            </div>
+        `
+
+        var newCard = document.createElement("div");
+        newCard.setAttribute("id", petId)
+        newCard.innerHTML = card;
+        document.getElementById("pets").appendChild(newCard);
+
+        petId ++;
+    };
+
+}
+
+
 // D I S P L A Y   P E T S
 function displayPets() {
     var reset = document.getElementById("pets");
     reset.innerHTML = "";
 
-    
+    var clearSearch = document.getElementById("search-text");
+    clearSearch.value="";
+
     for (var i = 0; i < pets.length; i++) {
 
         var icon = '';
@@ -209,6 +300,7 @@ function init() {
     oldestPet();
     youngestPet();
     totalPrice();
+    petsByType();
     displayPets();
     displayOfficeInfo();
 }

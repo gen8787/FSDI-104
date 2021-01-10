@@ -1,0 +1,8 @@
+.info label{
+    display: block;
+    margin-top: 10px;
+}
+
+.info .hide {
+    /* display: none; */
+}
