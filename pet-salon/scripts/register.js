@@ -76,8 +76,8 @@ function register() {
     } else if (inputService === "Full") {
         price = salon.prices.fullService;
     }
-// ****** ANTYPE ********* //
-    var newPet = new Pet(inputName, inputAge, inputGender, inputBreed, inputType, inputService, inputOwner, inputPhone, inputEmail, price);
+
+    var newPet = new Pet(inputName, inputAge, inputGender, inputType, inputBreed, inputService, inputOwner, inputPhone, inputEmail, price);
 
     pets.push(newPet);
 
@@ -172,19 +172,25 @@ function searchPet() {
             displayPet(pet);
         }
     }
-
 }
 
+
 // S E A R C H   B Y   T Y P E
-function searchByType() {
-    console.log("SEARCHING");
+function searchByType(anType) {    
+    document.getElementById("pets").innerHTML="";
+
+    for (var i = 0; i < pets.length; i ++) {
+        var pet = pets[i];
+
+        if (pet.anType === anType) {
+            displayPet(pet);
+        }
+    }
 }
 
 
 // D I S P L A Y   P E T
 function displayPet(pet) {
-    for (var i = 0; i < pets.length; i++) {
-
         var icon = '';
         if (pet.anType === "Dog") {
             icon = '<i class="fas fa-dog"></i>';
@@ -215,64 +221,28 @@ function displayPet(pet) {
         newCard.setAttribute("id", petId)
         newCard.innerHTML = card;
         document.getElementById("pets").appendChild(newCard);
+        // document.getElementById("pets").innerHTML += card;
 
         petId ++;
-    };
-
 }
 
 
 // D I S P L A Y   P E T S
 function displayPets() {
-    var reset = document.getElementById("pets");
-    reset.innerHTML = "";
-
-    var clearSearch = document.getElementById("search-text");
-    clearSearch.value="";
+    document.getElementById("pets").innerHTML = "";
+    document.getElementById("search-text").value="";
 
     for (var i = 0; i < pets.length; i++) {
-
-        var icon = '';
-        if (pets[i].anType === "Dog") {
-            icon = '<i class="fas fa-dog"></i>';
-        }
-        if (pets[i].anType === "Cat") {
-            icon = '<i class="fas fa-cat"></i>';
-        }
-
-        var card = `
-            <div id="" class="card shadow m-3" style="width: 17rem;">
-                <div class-"card-body">
-                    <h5 class="card-title text-center py-3">
-                        ${pets[i].name}
-                    </h5>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><b>Service:</b> ${pets[i].service}</li>
-                        <li class="list-group-item"><b>Price:</b> $${pets[i].price}.00</li>
-                        <li class="list-group-item"><b>Owner:</b> ${pets[i].owner}</li>
-                        <li class="list-group-item"><b>Phone:</b> ${pets[i].phone}</li>
-                        <li class="list-group-item">${icon}</li>
-                        <button class="my-2 mx-5 btn btn-sm btn-outline-danger" onclick="deletePet(${petId})">Remove Pet</button>
-                    </ul>
-                    </div>
-            </div>
-        `
-
-        var newCard = document.createElement("div");
-        newCard.setAttribute("id", petId)
-        newCard.innerHTML = card;
-        document.getElementById("pets").appendChild(newCard);
-
-        petId ++;
-    };
+        displayPet(pets[i]);
+    }
 }
+
 
 // D E L E T E   P E T
 function deletePet(petId) {
-    console.log(petId);
-    document.getElementById(`${petId}`).style.display="none";
-    // var deletePet = document.getElementById(petId);
-    // deletePet.parentElement.removeChild(deletePet)
+    // document.getElementById(`${petId}`).style.display="none";
+    var deletePet = document.getElementById(petId);
+    deletePet.parentElement.removeChild(deletePet);
 }
 
 
@@ -287,7 +257,6 @@ function displayOfficeInfo() {
             ${street} <br>
             ${city} ${state}, ${zip}
         </p>`;
-
 }
 
 

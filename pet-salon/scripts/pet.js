@@ -1,4 +1,4 @@
-// P E T   C L A S S 
+// P E T   C L A S S
 class Pet {
     constructor(name, age, gender, anType, breed, service, owner, phone, email, price) {
         this.name = name;
