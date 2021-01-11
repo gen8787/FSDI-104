@@ -36,31 +36,56 @@
             </ul>
         <hr>
 <!-- M A I N -->
-        <div class="main pt-5">
+    <main class="d-flex row">
+        <div class="col-6">
             <h1 class="display-6">About</h1>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium quisquam odio placeat, vel aut ducimus nostrum nihil dicta. Error voluptatem suscipit vitae voluptate dolor commodi recusandae non culpa est labore? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium quisquam odio placeat, vel aut ducimus nostrum nihil dicta. Error voluptatem suscipit vitae voluptate dolor commodi recusandae non culpa est labore?</p>
 
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis distinctio voluptatem quibusdam fugiat eaque dicta quod necessitatibus rerum aliquam ducimus sunt, expedita a dolore quis porro alias possimus odit iste.</p>
-        </div>
-
-        <h1>About Me</h1>
-
-        <section class="section info">
-            <h6>Hello, my name is</h6>
-            <h3>Gary N</h3>
-
-            <label>I'm trying to be a software dev.</label>
-
-            <label>I live in Vegas.</label>
-
+            
+            <h1 class="display-6">Contact</h1>
+    
             <label id="lblPhone" class="hide"></label>
-
+    
             <label id="lblEmail" class="hide"></label>
-
+    
             <button id="btnShowMore">Show more info</button>
-        </section>
+        </div>
+<!-- M S G   F O R M -->
+        <div class="col-6">
+            <h1 class="display-6">Send us a message!</h1>
+
+            <div class="border rounded border-danger p-3">
+                <form>
+                    <div class="mb-3 form-group">
+                        <label for="name" class="form-label">Your Name:</label>
+                        <input type="text" class="form-control" name="name" id="msgName">
+                    </div>
+
+                    <div class="mb-3 form-group">
+                        <label for="email" class="form-label">Your Email:</label>
+                        <input type="email" class="form-control" name="email" id="msgEmail">
+                    </div>
+
+                    <div class="mb-3 form-group">
+                        <label for="message" class="form-label">Message:</label>
+                        <textarea class="form-control" name="message" id="msgMsg" cols="30" rows="10"></textarea>
+                    </div>
+                </form>
+
+                <div>
+                    <button id="btnSendMsg" type="submit" class="d-flex btn btn-lg btn-danger mt-5 mb-2 ms-auto">Send</button>
+                </div>
+            </div>
+        </div>
+<!-- E N D   F O R M -->
+
+        <div id="map" class="mt-5">
+            <!-- M A P -->
+        </div>
+    </main>
 <!-- F O O T E R -->
-        <footer id="footer-info">
+        <footer id="footer-info" class="mt-5">
             
         </footer>
     </div>
@@ -71,6 +96,8 @@
     crossorigin="anonymous">
     </script>
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnQwTbjOgA-fObXWaYFTNjadjaNPpcHkU"></script>
+    <script src="./scripts/message.js"></script>
     <script src="./scripts/about.js"></script>
 </body>
 </html>

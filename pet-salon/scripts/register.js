@@ -11,6 +11,7 @@ var salon = {
         open: "9:00 AM",
         close: "5:00 PM"
     },
+    // petId: 1,
     pets: [],
     prices: {
         wash: 25,
@@ -81,6 +82,9 @@ function register() {
 
     pets.push(newPet);
 
+    $(".form-control").val("");
+    $(".form-select").val("");
+
     totalNumPets();
     oldestPet();
     youngestPet();
@@ -90,6 +94,7 @@ function register() {
 }
 
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // #   O F   P E T S   R E G I S T E R E D
 function totalNumPets() {
     var totalNumPets = pets.length;
@@ -176,7 +181,7 @@ function searchPet() {
 
 
 // S E A R C H   B Y   T Y P E
-function searchByType(anType) {    
+function searchByType(anType) {
     document.getElementById("pets").innerHTML="";
 
     for (var i = 0; i < pets.length; i ++) {
@@ -189,6 +194,7 @@ function searchByType(anType) {
 }
 
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // D I S P L A Y   P E T
 function displayPet(pet) {
         var icon = '';
@@ -200,7 +206,7 @@ function displayPet(pet) {
         }
 
         var card = `
-            <div id="" class="card shadow m-3" style="width: 17rem;">
+            <div id="" class="card shadow m-3" style="width: 15rem;">
                 <div class-"card-body">
                     <h5 class="card-title text-center py-3">
                         ${pet.name}
@@ -238,14 +244,32 @@ function displayPets() {
 }
 
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // D E L E T E   P E T
 function deletePet(petId) {
     // document.getElementById(`${petId}`).style.display="none";
     var deletePet = document.getElementById(petId);
     deletePet.parentElement.removeChild(deletePet);
+
+    // for (var i = 0; i < pets.length; i ++) {
+    //     var deletePet = pets[i];
+
+    //     if (deletePet.id === petId) {
+    //         pets.splice(i, 1);
+    //     }
+    // }
+
+    // displayPets();
+
+    // totalNumPets();
+    // oldestPet();
+    // youngestPet();
+    // totalPrice();
+    // petsByType();
 }
 
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // F O O T E R   I N F O
 function displayOfficeInfo() {
     document.getElementById('footer-info').innerHTML = `
@@ -259,7 +283,7 @@ function displayOfficeInfo() {
         </p>`;
 }
 
-
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // I N I T
 function init() {
     console.log("Document Ready");
