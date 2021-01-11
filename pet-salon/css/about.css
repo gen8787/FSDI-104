@@ -8,7 +8,6 @@
 }
 
 .nav-link:hover {
-    
     color: rgb(0, 110, 200);
 }
 
@@ -20,10 +19,6 @@ body {
 .info label{
     display: block;
     margin-top: 10px;
-}
-
-.info .hide {
-    /* display: none; */
 }
 
 #map {

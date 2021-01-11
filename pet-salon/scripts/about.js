@@ -31,7 +31,7 @@ function sendMessage() {
     messages.push(newMsg);
     console.log(newMsg);
 
-    alert(`${$("#msgName").val()}, your message has been sent.`);
+    alert(`${formName}, your message has been sent.`);
 
     messageId ++;
 

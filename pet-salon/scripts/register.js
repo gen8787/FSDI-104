@@ -11,7 +11,7 @@ var salon = {
         open: "9:00 AM",
         close: "5:00 PM"
     },
-    // petId: 1,
+    nextPetId: 7,
     pets: [],
     prices: {
         wash: 25,
@@ -22,43 +22,35 @@ var salon = {
 
 
 // D E S T R U C T U R E
-var { name, address: { street, city, state, zip }, hours: { open, close }, pets, prices: { wash, groom, fullService } } = salon;
-
-// G L O B A L   V A R I A B L E S
-let petId = 1;
+var { name, address: { street, city, state, zip }, hours: { open, close }, nextPetId, pets, prices: { wash, groom, fullService } } = salon;
 
 
 // C R E A T E   P E T S
 function createPets() {
-    var scooby = new Pet("Scooby", 50, "Male", "Dog", "Dane", "Full Service", "Shaggy", "555-555-1212", "email@email.com", 50);
+    var scooby = new Pet(1, "Scooby", 50, "Male", "Dog", "Dane", "Full Service", "Shaggy", "555-555-1212", "email@email.com", 50);
     pets.push(scooby);
 
-    var honey = new Pet("Honey", 3, "Female", "Dog", "Boxer", "Wash", "Mom", "777-333-5432", "email@email.com", 25);
+    var honey = new Pet(2, "Honey", 3, "Female", "Dog", "Boxer", "Wash", "Mom", "777-333-5432", "email@email.com", 25);
     pets.push(honey);
 
-    var yogi = new Pet("Yogi", 10, "Male", "Dog", "Mutt", "Groom", "Eddie", "999-867-5309", "email@email.com", 30);
+    var yogi = new Pet(3, "Yogi", 10, "Male", "Dog", "Mutt", "Groom", "Eddie", "999-867-5309", "email@email.com", 30);
     pets.push(yogi);
 
-    var zoe = new Pet("Zoe", 7, "Female", "Cat", "Meow", "Groom", "Carrie", "999-867-5309", "email@email.com", 30);
+    var zoe = new Pet(4, "Zoe", 7, "Female", "Cat", "Meow", "Full Service", "Carrie", "999-867-5309", "email@email.com", 50);
     pets.push(zoe);
 
-    var yogi = new Pet("Yogi", 10, "Male", "Dog", "Mutt", "Groom", "Eddie", "999-867-5309", "email@email.com", 30);
-    pets.push(yogi);
+    var garfield = new Pet(5, "Garfield", 17, "Male", "Cat", "Meow", "Groom", "Eddie", "999-867-5309", "email@email.com", 30);
+    pets.push(garfield);
 
-    var yogi = new Pet("Yogi", 10, "Male", "Dog", "Mutt", "Groom", "Eddie", "999-867-5309", "email@email.com", 30);
-    pets.push(yogi);
-
-    var yogi = new Pet("Yogi", 10, "Male", "Dog", "Mutt", "Groom", "Eddie", "999-867-5309", "email@email.com", 30);
-    pets.push(yogi);
-
-    var yogi = new Pet("Yogi", 10, "Male", "Dog", "Mutt", "Groom", "Eddie", "999-867-5309", "email@email.com", 30);
-    pets.push(yogi);
+    var smokey = new Pet(6, "Smokey", 10, "Male", "Dog", "Collie", "Wash", "Eddie", "999-867-5309", "email@email.com", 25);
+    pets.push(smokey);
 }
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // R E G I S T E R   A   P E T
 function register() {
+    var petId = nextPetId;
     var inputName = document.getElementById("petName").value;
     var inputAge = document.getElementById("petAge").value;
     var inputGender = document.getElementById("petGender").value;
@@ -74,13 +66,14 @@ function register() {
         price = salon.prices.wash;
     } else if (inputService === "Groom") {
         price = salon.prices.groom;
-    } else if (inputService === "Full") {
+    } else if (inputService === "Full Service") {
         price = salon.prices.fullService;
     }
 
-    var newPet = new Pet(inputName, inputAge, inputGender, inputType, inputBreed, inputService, inputOwner, inputPhone, inputEmail, price);
+    var newPet = new Pet(petId, inputName, inputAge, inputGender, inputType, inputBreed, inputService, inputOwner, inputPhone, inputEmail, price);
 
     pets.push(newPet);
+    nextPetId ++;
 
     $(".form-control").val("");
     $(".form-select").val("");
@@ -217,19 +210,15 @@ function displayPet(pet) {
                         <li class="list-group-item"><b>Owner:</b> ${pet.owner}</li>
                         <li class="list-group-item"><b>Phone:</b> ${pet.phone}</li>
                         <li class="list-group-item">${icon}</li>
-                        <button class="my-2 mx-5 btn btn-sm btn-outline-danger" onclick="deletePet(${petId})">Remove Pet</button>
+                        <button class="my-2 mx-5 btn btn-sm btn-outline-danger" onclick="deletePet(${pet.petId})">Remove Pet</button>
                     </ul>
                     </div>
             </div>
         `
 
         var newCard = document.createElement("div");
-        newCard.setAttribute("id", petId)
         newCard.innerHTML = card;
         document.getElementById("pets").appendChild(newCard);
-        // document.getElementById("pets").innerHTML += card;
-
-        petId ++;
 }
 
 
@@ -247,25 +236,21 @@ function displayPets() {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 // D E L E T E   P E T
 function deletePet(petId) {
-    // document.getElementById(`${petId}`).style.display="none";
-    var deletePet = document.getElementById(petId);
-    deletePet.parentElement.removeChild(deletePet);
+    for (var i = 0; i < pets.length; i ++) {
+        var deletePet = pets[i];
 
-    // for (var i = 0; i < pets.length; i ++) {
-    //     var deletePet = pets[i];
+        if (deletePet.petId === petId) {
+            pets.splice(i, 1);
+        }
+    }
 
-    //     if (deletePet.id === petId) {
-    //         pets.splice(i, 1);
-    //     }
-    // }
+    displayPets();
 
-    // displayPets();
-
-    // totalNumPets();
-    // oldestPet();
-    // youngestPet();
-    // totalPrice();
-    // petsByType();
+    totalNumPets();
+    oldestPet();
+    youngestPet();
+    totalPrice();
+    petsByType();
 }
 
 
